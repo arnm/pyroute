@@ -16,7 +16,7 @@ from ipaddress import ip_network, ip_address
 import os
 
 
-def parse_table(table_file):
+def parse_table_file(table_file):
     table_dict = {}
     with open(table_file) as table_file_handle:
         for line in table_file_handle.readlines():
@@ -48,7 +48,7 @@ def route(table, addresses):
             print(address, next(iter((asdict.keys()))))
 
 def main(usage):
-    table_dict = parse_table(usage['<table_file>'])
+    table_dict = parse_table_file(usage['<table_file>'])
     addresses = parse_address_file(usage['<address_file>'])
     route(table_dict, addresses)
 
