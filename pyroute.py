@@ -33,9 +33,9 @@ def route_address(table, address):
     routes = {}
     for asid, subnets_dict in table.items():
         for subnet, cost in subnets_dict.items():
-            if not address in subnet: break
-            if not address in routes or cost < next(iter((routes[address].values()))):
-                routes[address] = {asid: cost}
+            if address in subnet:
+                if not address in routes: routes[address] = {asid: cost}
+                if cost < next(iter((routes[address].values()))): routes[address] = {asid: cost}
     return routes
 
 def route(table, addresses):
