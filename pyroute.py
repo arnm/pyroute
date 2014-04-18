@@ -34,7 +34,7 @@ def route_address(table, address):
     for asid, subnets_dict in table.items():
         for subnet, cost in subnets_dict.items():
             if not address in subnet: break
-            if not address in routes or cost < list(routes[address].values())[0]:
+            if not address in routes or cost < next(iter((routes[address].values()))):
                 routes[address] = {asid: cost}
     return routes
 
@@ -45,7 +45,7 @@ def route(table, addresses):
             print(address, 'X')
         else:
             asdict = route_dict[address]
-            print(address, list(asdict.keys())[0])
+            print(address, next(iter((asdict.keys()))))
 
 def main(usage):
     table_dict = parse_table(usage['<table_file>'])
