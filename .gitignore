@@ -1,0 +1,5 @@
+*.pyc
+results*.txt
+*.sublime-project
+*.sublime-workspace
+/__pycache__/
